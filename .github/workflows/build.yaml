@@ -50,7 +50,7 @@ jobs:
       - id: version
         run: echo "semver=${{ steps.gitversion.outputs.semVer }}" >> $GITHUB_OUTPUT
 
-  build-vault:
+  build:
     needs: version
     runs-on: ubuntu-latest
     steps:
