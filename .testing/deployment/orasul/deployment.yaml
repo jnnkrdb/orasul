@@ -16,3 +16,6 @@ spec:
       containers:
         - name: orasul
           image: ghcr.io/jnnkrdb/orasul:dev
+          envFrom:
+            - configMapRef:
+                name: orasul-env

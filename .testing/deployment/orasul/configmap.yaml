@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: orasul-env
+  namespace: zotoci
+data:
+  ORASUL_OCI_REGISTRY: "zotoci.zotoci.svc.cluster.local:5000"
+  ORASUL_OCI_USERNAME: "admin"
+  ORASUL_OCI_PASSWORD: "admin"

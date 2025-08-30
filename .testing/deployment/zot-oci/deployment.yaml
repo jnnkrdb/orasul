@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zotoci
+  namespace: zotoci
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: zotoci
+  template:
+    metadata:
+      labels:
+        app: zotoci
+    spec:
+      containers:
+        - name: zotoci
+          image: ghcr.io/project-zot/zot-linux-amd64:v2.1.7
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: zotoci
+              containerPort: 5000
+              protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/registry
+            - name: zotoci-secret
+              mountPath: '/secret'
+            - name: zotoci-config
+              mountPath: '/etc/zot'
+          livenessProbe:
+            initialDelaySeconds: 5
+            httpGet:
+              path: /livez
+              port: 5000
+              scheme: HTTP
+          readinessProbe:
+            initialDelaySeconds: 5
+            httpGet:
+              path: /readyz
+              port: 5000
+              scheme: HTTP
+          startupProbe:
+            periodSeconds: 10
+            failureThreshold: 30
+            httpGet:
+              path: /startupz
+              port: 5000
+              scheme: HTTP
+      volumes:
+        - name: data
+          emptyDir: {}
+        - name: zotoci-config
+          configMap:
+            name: zotoci-config
+        - name: zotoci-secret
+          secret:
+            secretName: zotoci-secret
