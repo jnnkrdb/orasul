@@ -16,6 +16,7 @@ spec:
       containers:
         - name: orasul
           image: ghcr.io/jnnkrdb/orasul:dev
+          imagePullPolicy: Always
           envFrom:
             - configMapRef:
                 name: orasul-env

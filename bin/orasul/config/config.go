@@ -8,9 +8,11 @@ import (
 )
 
 type Config struct {
-	OCIRegistry string `env:"ORASUL_OCI_REGISTRY" default:""`
-	OCIUsername string `env:"ORASUL_OCI_USERNAME" default:""`
-	OCIPassword string `env:"ORASUL_OCI_PASSWORD" default:""`
+	OCI struct {
+		Registry string `env:"ORASUL_OCI_REGISTRY" default:""`
+		Username string `env:"ORASUL_OCI_USERNAME" default:""`
+		Password string `env:"ORASUL_OCI_PASSWORD" default:""`
+	}
 }
 
 var Cfg Config
