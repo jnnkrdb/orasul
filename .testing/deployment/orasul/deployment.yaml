@@ -20,3 +20,10 @@ spec:
           envFrom:
             - configMapRef:
                 name: orasul-env
+          volumeMounts:
+            - name: data
+              mountPath: /opt/orasul/data
+      volumes:
+        - name: data
+          secret:
+            secretName: orasul-file

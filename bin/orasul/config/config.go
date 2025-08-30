@@ -1,17 +1,18 @@
 package config
 
 import (
-	"fmt"
-
 	"github.com/jnnkrdb/orasul/pkg/envconfig"
 	"github.com/jnnkrdb/orasul/pkg/logging"
 )
 
 type Config struct {
-	OCI struct {
+	Oci struct {
 		Registry string
 		Username string
 		Password string
+	}
+	Local struct {
+		RegistryPath string `default:"/opt/orasul/data"`
 	}
 }
 
@@ -19,8 +20,8 @@ var Cfg Config
 
 func LoadConfig() {
 	if err := envconfig.Process("orasul", &Cfg); err != nil {
-		fmt.Printf("Error loading config: %v\n", err)
+		logging.Default.Error("Error loading config", "err", err)
 	}
 
-	logging.Default.Debug("starting with config: %v", Cfg)
+	logging.Default.Debug("starting with config", "config", Cfg)
 }
