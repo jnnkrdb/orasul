@@ -12,7 +12,7 @@ type Config struct {
 		Password string
 	}
 	Local struct {
-		RegistryPath string `default:"/opt/orasul/data"`
+		RegistryPath string `default:"/opt/orasul/temp"`
 	}
 }
 
