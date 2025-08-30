@@ -1,8 +1,8 @@
 package main
 
-import "github.com/jnnkrdb/orasul/pkg/logging"
+import "github.com/jnnkrdb/orasul/bin/orasul/config"
 
 func main() {
 
-	logging.Default.Error("no code....")
+	config.LoadConfig()
 }
