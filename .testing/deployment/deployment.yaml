@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orasul
+  namespace: orasul
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orasul
+  template:
+    metadata:
+      labels:
+        app: orasul
+    spec:
+      containers:
+        - name: orasul
+          image: ghcr.io/jnnkrdb/orasul:dev
