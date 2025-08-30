@@ -9,16 +9,16 @@ import (
 
 type Config struct {
 	OCI struct {
-		Registry string `env:"ORASUL_OCI_REGISTRY" default:""`
-		Username string `env:"ORASUL_OCI_USERNAME" default:""`
-		Password string `env:"ORASUL_OCI_PASSWORD" default:""`
+		Registry string
+		Username string
+		Password string
 	}
 }
 
 var Cfg Config
 
 func LoadConfig() {
-	if err := envconfig.Process("", &Cfg); err != nil {
+	if err := envconfig.Process("orasul", &Cfg); err != nil {
 		fmt.Printf("Error loading config: %v\n", err)
 	}
 
